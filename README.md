@@ -1,6 +1,6 @@
-# Appen;
+# Appen
 
-- Ecoemmerce de canetas.
+- Ecommerce de canetas.
 
 - TODO :
   .cadastro de produtos.
