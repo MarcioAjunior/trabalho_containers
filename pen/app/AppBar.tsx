@@ -57,6 +57,17 @@ const AppBar = () => {
                     Logout
                   </a>
                 </Menu.Item>
+                {/*@ts-ignore */}
+                {session.user.isAdm && (
+                  <Menu.Item>
+                    <DropdownLink
+                      className="dropdown-link"
+                      href="/admin/dashboard"
+                    >
+                      Admin Dashboard
+                    </DropdownLink>
+                  </Menu.Item>
+                )}
               </Menu.Items>
             </Menu>
           ) : (
