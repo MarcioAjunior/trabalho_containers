@@ -49,16 +49,6 @@ const AppBar = () => {
               </Menu.Button>
               <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                 <Menu.Item>
-                  <DropdownLink className="dropdown-link" href="/profile">
-                    Profile
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <DropdownLink className="dropdown-link" href="/order-history">
-                    Order History
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
                   <a
                     className="dropdown-link"
                     href="#"
