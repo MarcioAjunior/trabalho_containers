@@ -36,10 +36,7 @@ export default function Page() {
     }
   }
 
-  const [
-    { loading, error, products, loadingCreate, successDelete, loadingDelete },
-    dispatch,
-  ] = useReducer(reducer, {
+  const [{ products }, dispatch] = useReducer(reducer, {
     loading: true,
     products: [],
     error: "",
@@ -50,65 +47,52 @@ export default function Page() {
       <div className="overflow-x-auto md:col-span-3">
         <div className="flex justify-between">
           <h1 className="mb-4 text-xl">Produtos</h1>
-          {loadingDelete && <div>Deleting item...</div>}
           <button
-            disabled={loadingCreate}
+            disabled={false}
             onClick={() => null} //createHandler
             className="primary-button"
           >
-            {loadingCreate ? "Loading" : "Create"}
+            Adicionar
           </button>
         </div>
-        {loading ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div className="alert-error">{error}</div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead className="border-b">
-                <tr>
-                  <th className="px-5 text-left">ID</th>
-                  <th className="p-5 text-left">NAME</th>
-                  <th className="p-5 text-left">PRICE</th>
-                  <th className="p-5 text-left">CATEGORY</th>
-                  <th className="p-5 text-left">COUNT</th>
-                  <th className="p-5 text-left">RATING</th>
-                  <th className="p-5 text-left">ACTIONS</th>
+
+        <div className="overflow-x-auto">
+          <table className="min-w-full">
+            <thead className="border-b">
+              <tr>
+                <th className="px-5 text-left">Cod.</th>
+                <th className="p-5 text-left">Nome</th>
+                <th className="p-5 text-left">Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product: any) => (
+                <tr key={product._id} className="border-b">
+                  <td className=" p-5 ">{product._id.substring(20, 24)}</td>
+                  <td className=" p-5 ">{product.name}</td>
+                  <td className=" p-5 ">${product.price}</td>
+                  <td className=" p-5 ">
+                    <Link
+                      href={`/admin/produtos/${product.slug}`}
+                      type="button"
+                      className="default-button"
+                    >
+                      Alterar
+                    </Link>
+                    &nbsp;
+                    <button
+                      onClick={() => null} //deleteHandler(product._id)
+                      className="default-button"
+                      type="button"
+                    >
+                      Remover
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {products.map((product: any) => (
-                  <tr key={product._id} className="border-b">
-                    <td className=" p-5 ">{product._id.substring(20, 24)}</td>
-                    <td className=" p-5 ">{product.name}</td>
-                    <td className=" p-5 ">${product.price}</td>
-                    <td className=" p-5 ">{product.category}</td>
-                    <td className=" p-5 ">{product.countInStock}</td>
-                    <td className=" p-5 ">{product.rating}</td>
-                    <td className=" p-5 ">
-                      <Link
-                        href={`/admin/produtos/${product.slug}`}
-                        type="button"
-                        className="default-button"
-                      >
-                        Edit
-                      </Link>
-                      &nbsp;
-                      <button
-                        onClick={() => null} //deleteHandler(product._id)
-                        className="default-button"
-                        type="button"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   );

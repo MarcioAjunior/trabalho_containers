@@ -36,7 +36,7 @@ export default function Page() {
         <CheckoutWizard activeStep={1} />
         {/* @ts-ignore */}
         <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
-          <h1 className="mb-4 text-xl">Payment Method</h1>
+          <h1 className="mb-4 text-xl">Forma de pagamento</h1>
           {["Stripe", "Boleto"].map((payment) => (
             <div key={payment} className="mb-4">
               <input

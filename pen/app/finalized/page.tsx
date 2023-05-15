@@ -42,11 +42,11 @@ export default function Page() {
               <h2 className="mb-2 text-lg">Metodo de pagamento</h2>
               <div>{paymentMethod}</div>
               <div>
-                <Link href="/payment">Edit</Link>
+                <Link href="/payment">Alterar</Link>
               </div>
             </div>
             <div className="card overflow-x-auto p-5">
-              <h2 className="mb-2 text-lg">Order Items</h2>
+              <h2 className="mb-2 text-lg">Produtos</h2>
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
@@ -73,7 +73,7 @@ export default function Page() {
                         </Link>
                       </td>
                       <td className=" p-5 text-right">{item.quantity}</td>
-                      <td className="p-5 text-right">${item.price}</td>
+                      <td className="p-5 text-right">R${item.price}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -90,7 +90,7 @@ export default function Page() {
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Items</div>
-                    <div>${itemsPrice}</div>
+                    <div> {itemsPrice}</div>
                   </div>
                 </li>
                 <li>

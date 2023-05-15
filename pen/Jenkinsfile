@@ -7,19 +7,9 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Start') {
             steps {
-                sh 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'npm run dev'
             }
         }
     }
