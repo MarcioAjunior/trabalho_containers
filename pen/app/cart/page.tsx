@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { Store } from "utils/store";
 //@ts-ignore
 import { XCircleIcon } from "@heroicons/react/outline";
+import axios from "axios";
 
 export default function Page() {
   const router = useRouter();
@@ -22,6 +23,35 @@ export default function Page() {
     const quantity = Number(qty);
     dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
     toast.success("Product updated in the cart");
+  };
+
+  const saveCar = () => {
+    axios
+      .post("http://localhost:3000/api/cart", state)
+      .then(() => {
+        toast.success("Carrinho cadastrado com sucesso", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -98,10 +128,7 @@ export default function Page() {
                   </div>
                 </li>
                 <li>
-                  <button
-                    onClick={() => router.push("/payment")}
-                    className="primary-button w-full"
-                  >
+                  <button onClick={saveCar} className="primary-button w-full">
                     Finalizar compra !
                   </button>
                 </li>
